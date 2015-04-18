@@ -1,6 +1,44 @@
 var main = {
+    gameOver:false,
     pet:null,
     foods:null,
+    enemies:null,
+    info:function( str ){
+                $('.message-bar').prepend('<p class="info">'+str+'</p>');
+            },
+    warning:function( str ){
+                $('.message-bar').prepend('<p class="warning">'+str+'</p>');
+            },
+    danger:function( str ){
+        $('.message-bar').prepend('<p class="danger">'+str+'</p>');
+    },
+    success:function( str ){
+        $('.message-bar').prepend('<p class="success">'+str+'</p>');
+    },
+    unleashEnemies:function(){
+        if ( this.gameOver == true ) return;
+        
+        if( this.enemies == null){
+            max = new cocoriumEnemy.new('max');
+            this.enemies = new Array();
+            this.enemies[max.id] = max;
+            this.enemies[max.id].attack();
+        }
+        else{
+            this.enemies = new Array();
+            for(i =0; i < randomNum(1, 4); ++i){
+                max = new cocoriumEnemy.new('max');
+                this.enemies[max.id] = max;
+                this.enemies[max.id].attack();
+            }
+        }
+        self = this;
+        
+        setTimeout(function(self){
+            self.unleashEnemies();
+        }
+        , 5000, self);
+    },
     init:function(){
         $('body').append( '<div class="stage"></div>' );
         $('.stage').append('<div class="canvas"></div>');
@@ -64,7 +102,9 @@ var main = {
         this.whip_snd = new Audio("sounds/whip.mp3");
         this.whip_2_snd = new Audio("sounds/whip.mp3");
         this.save_snd = new Audio("sounds/save.mp3");
-        
+        this.pain_snd = new Audio("sounds/pain.mp3");
+        this.dun_snd = new Audio("sounds/dun.mp3");
+        this.sword_snd = new Audio("sounds/sword.mp3");
     }
 };
 

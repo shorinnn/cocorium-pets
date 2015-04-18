@@ -148,3 +148,19 @@ p.success{
     width:80px;
     cursor: pointer;
 }
+
+.enemy{
+    border:1px solid black;
+    height:90px;
+    width:48px;
+    position:absolute;
+    background-color:white;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.max{
+    background-image: url('../img/max.png');
+    background-size: 100% 100%;
+}
+
