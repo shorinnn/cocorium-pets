@@ -1,6 +1,7 @@
 var cocoriumEnemy = {
     new : function(name){
         this.name = name;
+        this.vurnerable = true;
         this.id = 'enemy'+randomNum(100,999);
         func = "main.enemies['"+this.id+"'].fightOff()";
         this.html = "<div id='"+this.id+"' onclick=\""+func+"\" class=' content shake shake-constant enemy "+this.name+"'></div>";
@@ -18,6 +19,7 @@ var cocoriumEnemy = {
         };
         
         this.hump = function(){
+            this.vurnerable = false;
             dmg = randomNum(10, 20);
             main.danger('You got humpt by '+this.name+'!');
             $('#'+this.id).removeClass('shake shake-constant');
@@ -36,6 +38,7 @@ var cocoriumEnemy = {
         };
         
         this.fightOff = function(){
+            if( this.vurnerable == false ) return;
             main.sword_snd.play();
             main.success('You fought off the evil '+this.name+'!');
             clearTimeout( this.timeOut );

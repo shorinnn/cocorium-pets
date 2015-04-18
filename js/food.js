@@ -12,7 +12,7 @@ var cocoriumFood = {
         };
         this.eatMe = function(){
             if( !this.eatable ) return false;
-            main.pet.info( main.pet.name + ' ate ' + this.name+" (Karma: "+this.karma+", Nutrition: "+this.nutrition+")");
+            main.info( main.pet.name + ' ate ' + this.name+" (Karma: "+this.karma+", Nutrition: "+this.nutrition+")");
             main.pet.feed( this );
             this.consumed();
             if(this.name=='beans') main.boo_snd.play();
